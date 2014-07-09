@@ -14,6 +14,14 @@ class SimpleControllerSpec extends Specification {
         controller.hello()
 
         then:
-        assert response.text == 'hello'
+        response.text == 'hello'
+    }
+
+    void "test index action redirect"() {
+        when:
+        controller.index()
+
+        then:
+        response.redirectedUrl == '/simple/hello'
     }
 }
