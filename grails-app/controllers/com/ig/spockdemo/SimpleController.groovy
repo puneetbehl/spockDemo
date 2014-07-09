@@ -9,4 +9,9 @@ class SimpleController {
     def index() {
         redirect action: 'hello'
     }
+
+    def list() {
+        List<Person> persons = Person.list(params)
+        [persons: persons]
+    }
 }

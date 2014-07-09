@@ -24,4 +24,19 @@ class SimpleControllerSpec extends Specification {
         then:
         response.redirectedUrl == '/simple/hello'
     }
+
+    void "associating params"() {
+        setup:
+        def model
+
+        when:
+        params.sort = "name"
+        params.max = 20
+        params.offset = 0
+        model = controller.list()
+
+        then:
+        model.persons.size() == 20
+
+    }
 }
