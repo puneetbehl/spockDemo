@@ -5,4 +5,3 @@ class Person {
     static constraints = {
     }
 }
-g
