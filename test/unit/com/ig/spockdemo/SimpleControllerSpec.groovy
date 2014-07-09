@@ -39,4 +39,14 @@ class SimpleControllerSpec extends Specification {
         model.persons.size() == 20
 
     }
+
+
+    void "view rendering"() {
+        when:
+        controller.home()
+
+        then:
+        view == "/simple/homePage"
+        model.title == "Hello World"
+    }
 }

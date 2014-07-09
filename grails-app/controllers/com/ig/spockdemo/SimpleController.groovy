@@ -14,4 +14,8 @@ class SimpleController {
         List<Person> persons = Person.list(params)
         [persons: persons]
     }
+
+    def home() {
+        render view: "homePage", model: [title: "Hello World"]
+    }
 }
