@@ -7,16 +7,9 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@Mock(Book)
+@Mock([Book])
 @TestFor(BookController)
 class BookControllerSpec extends Specification {
-
-    def setup() {
-    }
-
-    def cleanup() {
-    }
-
 
     void "BookController: save(), Invalid save"() {
         when:
