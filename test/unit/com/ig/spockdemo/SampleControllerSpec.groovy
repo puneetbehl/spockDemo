@@ -24,4 +24,13 @@ class SampleControllerSpec extends Specification {
 //        response.text == '<xml version="1.0" encoding="UTF-8"?><map><entry key="Hello">World</entry></map>'
         response.text == '<?xml version="1.0" encoding="UTF-8"?><map><entry key="Hello">World</entry></map>'
     }
+
+    void "SampleController: JSON type handling example"() {
+        when:
+        request.contentType='application/json'
+        controller.index()
+
+        then:
+        response.text == '{"Hello":"World"}'
+    }
 }
