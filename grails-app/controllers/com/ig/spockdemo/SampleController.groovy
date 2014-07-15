@@ -7,6 +7,7 @@ class SampleController {
         request.withFormat {
             xml {render data as grails.converters.XML}
             json {render data as grails.converters.JSON}
+            html {render data}
         }
 
     }

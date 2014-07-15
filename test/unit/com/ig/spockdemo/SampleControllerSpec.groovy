@@ -33,4 +33,13 @@ class SampleControllerSpec extends Specification {
         then:
         response.text == '{"Hello":"World"}'
     }
+
+    void "SampleController: HTML type handling"() {
+        when:
+        request.contentType = 'application/text'
+        controller.index()
+
+        then:
+        response.text == "['Hello':'World']"
+    }
 }
