@@ -20,10 +20,10 @@ class BookSpec extends Specification {
         Book book
 
         when:
-        book = new Book(title: 'Misery', author: 'Stephen King')
+        book = new Book()
 
         then:
-        book.validate()
+        !book.validate()
         book.errors.getFieldError('title').code == 'nullable'
         book.errors.getFieldError('author').code == 'nullable'
 
