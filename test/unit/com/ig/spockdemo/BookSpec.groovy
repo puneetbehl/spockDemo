@@ -15,6 +15,17 @@ class BookSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "Book: constraints validation"() {
+        setup:
+        Book book
+
+        when:
+        book = new Book(title: 'Misery', author: 'Stephen King')
+
+        then:
+        book.validate()
+        book.errors.getFieldError('title').code == 'nullable'
+        book.errors.getFieldError('author').code == 'nullable'
+
     }
 }
