@@ -1,15 +1,20 @@
 package com.ig.spockdemo
 
-import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import grails.test.mixin.TestMixin
+import grails.test.mixin.domain.DomainClassUnitTestMixin
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@Mock([Book])
+@TestMixin(DomainClassUnitTestMixin)
 @TestFor(BookController)
 class BookControllerSpec extends Specification {
+
+    void setup() {
+        mockDomain(Book)
+    }
 
     void "BookController: save(), Invalid save"() {
         when:
@@ -22,8 +27,8 @@ class BookControllerSpec extends Specification {
 
     void "BookController: save(), Valid save"() {
         when:
-        params.title = "The Secret"
-        params.pages=100
+        params.title = "The Stand"
+        params.pages=500
         controller.save()
 
         then:
