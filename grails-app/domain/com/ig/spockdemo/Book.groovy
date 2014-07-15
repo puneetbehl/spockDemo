@@ -2,7 +2,8 @@ package com.ig.spockdemo
 
 class Book {
 
-    String name
+    String title
+    Integer pages
 
     static constraints = {
     }

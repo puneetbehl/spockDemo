@@ -19,4 +19,17 @@ class BookControllerSpec extends Specification {
         model.bookInstance != null
         view == '/book/create'
     }
+
+    void "BookController: save(), Valid save"() {
+        when:
+        params.title = "The Secret"
+        params.pages=100
+        controller.save()
+
+        then:
+        response.redirectedUrl == '/book/show/1'
+        flash.message != null
+        Book.count() == 1
+
+    }
 }
