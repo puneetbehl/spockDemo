@@ -21,6 +21,7 @@ class SampleControllerSpec extends Specification {
         controller.index()
 
         then:
-        response.text == '<xml version="1.0" encoding="UFT-8"?><map><entry key="Hello">World</entry></map>'
+//        response.text == '<xml version="1.0" encoding="UTF-8"?><map><entry key="Hello">World</entry></map>'
+        response.text == '<?xml version="1.0" encoding="UTF-8"?><map><entry key="Hello">World</entry></map>'
     }
 }
