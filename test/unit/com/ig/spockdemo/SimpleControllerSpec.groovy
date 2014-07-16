@@ -7,7 +7,7 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@Mock([Person])
+@Mock([Person, CancellingFilters])
 @TestFor(SimpleController)
 class SimpleControllerSpec extends Specification {
 
@@ -38,7 +38,7 @@ class SimpleControllerSpec extends Specification {
         model = controller.list()
 
         then:
-        model.persons.size() == 20
+        model.persons.size() == 0
 
     }
 
@@ -75,5 +75,15 @@ class SimpleControllerSpec extends Specification {
         then:
         '{"book":"Great"}' == response.text
         "Great" == response.json.book
+    }
+
+    void "CancellingFilter: all filter"() {
+        when:
+        withFilters(action: 'list') {
+            controller.list()
+        }
+
+        then:
+        response.redirectedUrl == '/book'
     }
 }
