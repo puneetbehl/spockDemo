@@ -2,6 +2,7 @@ package com.ig.spockdemo
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -15,6 +16,7 @@ class BookSpec extends Specification {
     def cleanup() {
     }
 
+    @Unroll("#sno, Book: constraints validation")
     void "Book: constraints validation"() {
         setup:
         Book book
