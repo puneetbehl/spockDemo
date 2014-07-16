@@ -38,6 +38,12 @@ class BookSpec extends Specification {
         book.errors.getFieldError('title').code == 'unique'
         book.errors.getFieldError('author').code == 'minSize.notmet'
 
+        when:
+        book = new Book(title: "The Shining", author: "Stephen King")
+
+        then:
+        book.validate()
+
     }
 
 }
