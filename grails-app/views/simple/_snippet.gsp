@@ -1,1 +1,1 @@
-Sample Temaplate
+Sample Template
