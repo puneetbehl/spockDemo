@@ -21,28 +21,21 @@ class BookSpec extends Specification {
         Book exisingBook
 
         when:
-        book = new Book()
-
-        then:
-        !book.validate()
-        book.errors.getFieldError('title').code == 'nullable'
-        book.errors.getFieldError('author').code == 'nullable'
-
-        when:
         exisingBook = new Book(title: "Misery", author: "Stephen King")
         mockForConstraintsTests(Book, [exisingBook])
-        book = new Book(title: "Misery", author: "JK")
+        book = new Book(title: title, author: author)
 
         then:
-        !book.validate()
-        book.errors.getFieldError('title').code == 'unique'
-        book.errors.getFieldError('author').code == 'minSize.notmet'
+        book.validate() == expectedValidationResult
+        book.hasErrors() == hasErrors
+        book.errors?.getFieldError('title')?.code == errorCodeTitle
+        book.errors?.getFieldError('author')?.code == errorCodeAuthor
 
-        when:
-        book = new Book(title: "The Shining", author: "Stephen King")
-
-        then:
-        book.validate()
+        where:
+        sno | title         | author         | errorCodeTitle | errorCodeAuthor  | expectedValidationResult | hasErrors
+        1   | null          | null           | 'nullable'     | 'nullable'       | false                    | true
+        2   | "Misery"      | "JK"           | "unique"       | "minSize.notmet" | false                    | true
+        3   | "The Shining" | "Stephen King" | null           | null             | true                     | false
 
     }
 
